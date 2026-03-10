@@ -4,10 +4,11 @@ var userN=[];
 var level=0;
 var colors=["b1","b2","b3","b4"];
 
+var restart=true;
 var started = false;
 
 function startGame(){
-    if(!started){
+    if(!started&&restart){
         next();
         started = true;
     }
@@ -83,7 +84,12 @@ function answer(index){
         new Audio("wrong.mp3").play();
         $("h1").text("Game Over! Press Any Key to Restart");
 
-        onceA();
+        restart=false;
+        setTimeout(function(){
+           onceA();
+        restart=true;},1000);
+
+        
     }
 }
 
@@ -91,4 +97,5 @@ function onceA(){
     level=0;
     started=false;
     randomN=[];
+
 }
